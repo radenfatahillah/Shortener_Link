@@ -29,14 +29,11 @@ Route::group(['as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middlewa
     Route::get('kelolamember', 'KelolaMemberController@index')->name('kelolamemberindex');
     Route::delete('kelolamember/delete/{id}', 'KelolaMemberController@destroy')->name('kelolamemberdelete');
     Route::put('/password', 'UbahPasswordController@updatePassword')->name('passwordupdate');
-    
+
     Route::resource('short_link_all', 'SemuaShortLinkController', ['only' => ['index', 'destroy']]);
     Route::resource('kelola_member', 'KelolaMemberController', ['only' => ['index', 'destroy']]);
     Route::resource('kelola_link', 'ShortLinkController', ['except' => ['show']]);
-    Route::get('{short_link}', 'ShortLinkController@shortenLink')->name('shorten.link');
-    
-
-       
+    Route::get('{short_link}', 'ShortLinkController@shortenLink')->name('shorten.link');    
 });
 
 Route::group(['as'=>'member.','prefix'=>'member', 'namespace'=>'Member', 'middleware'=>['auth','member']], function () {
