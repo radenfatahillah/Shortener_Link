@@ -26,8 +26,6 @@ class ShortLinkController extends Controller
                     'user_id'=> Auth::id()
                 ]);
             }
-            
-           
             $original_link = ShortLink::whereOriginalLink($request->original_link)->first();
         } 
         return view('short_url', compact('original_link'));

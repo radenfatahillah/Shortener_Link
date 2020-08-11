@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Kelola_Member')
+@section('title','Kelola Member')
 
 @push('css')
 
@@ -21,6 +21,7 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light text-center">
                 <tr>
+                  <th scope="col" class="sort" data-sort="name">No</th>
                   <th scope="col" class="sort" data-sort="name">Nama</th>
                   <th scope="col" class="sort" data-sort="budget">Email</th>
                   <th scope="col" class="sort" data-sort="status">Bergabung</th>
@@ -30,33 +31,35 @@
                 </tr>
               </thead>
               <tbody class="list text-center">
+                @foreach($members as $key=> $row)
                 <tr>
-                @foreach($user as $usr)
+                <td>{{ $key + 1 }}</td>
                 <td>
                     <div class="media align-items-center">
                         <a href="#" class="avatar rounded-circle mr-3">
-                          <img alt="Image placeholder" src="{{ asset('assets/images/' . $usr->image) }}" class="profile-userpic">
+                          <img alt="Image placeholder" src="{{ asset('assets/images/' .$row->image) }}" class="profile-userpic">
                         </a>
                         <div class="media-body">
-                          <span class="name mb-0 text-sm"><?= $usr->nama ?></span>
+                          <span class="name mb-0 text-sm">{{ $row->nama }}</span>
                         </div>
                       </div>
                       
                   </td>
-                  <td class="budget">
-                  <?= $usr->email ?>
-                  </td>
-                  <td class="budget">
-                  <?= $usr->created_at ?>
-                  </td>
-                  <td class="budget">
-                    100
+                  <td>
+                  {{ $row->email }}
                   </td>
                   <td>
-                  <form action="<?= route('admin.kelolamemberdelete',['id'=>$usr->id]) ?>" method="POST" onclick="return confirm('Confirm delete?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-danger icon icon-shape icon-sm bg-gradient-red text-white rounded-circle shadow"><i class="fas fa-trash"></i></button>
+                    {{ date("d M Y", strtotime($row->created_at)) }}
+                  </td>
+                  <td>
+                    {{ $row->shortlink->count() }}
+                  </td>
+                 
+                  <td>
+                  <button type="submit" class="btn btn-sm btn-danger icon icon-shape icon-sm bg-gradient-red text-white rounded-circle shadow" type="button" onclick="hapus({{ $row->id }})"><i class="fas fa-trash"></i></button>
+                  <form id="hps-{{ $row->id }}" action="{{ route('admin.kelola_member.destroy', ['kelola_member' => $row]) }}" method="POST" style="display: none;" >
+                      @csrf
+                      @method('DELETE')
                   </form>
                   </td>
                 </tr>
@@ -68,28 +71,11 @@
           <div class="card-footer py-4">
             <nav aria-label="...">
               <ul class="pagination justify-content-end mb-0">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">
-                    <i class="fas fa-angle-left"></i>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
-                    <i class="fas fa-angle-right"></i>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </li>
+                {{ $members->links() }}
               </ul>
             </nav>
           </div>
+
         </div>
       </div>
     </div>
@@ -99,4 +85,30 @@
 
 @push('js')
 
+<script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+<script type="text/javascript">
+    function hapus(id) {
+        swal({
+            title: 'Lanjutkan Menghapus?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                event.preventDefault();
+                document.getElementById('hps-'+id).submit();
+            } else if (
+                result.dismiss === swal.DismissReason.cancel
+            ) {
+                swal(
+                    'Dibatalkan',
+                    '',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
 @endpush

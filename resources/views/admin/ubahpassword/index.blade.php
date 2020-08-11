@@ -81,13 +81,13 @@
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Password Baru</label>
-                        <input type="password" name="password" name="password_confirmation" id="input-email" class="form-control" placeholder="Password Baru">
+                        <input type="password" name="password" name="password" id="input-email" class="form-control" placeholder="Password Baru">
                       </div>
                     </div>
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Konfirmasi Password Baru</label>
-                        <input type="password" id="input-email" class="form-control" placeholder="Konfirmasi Password Baru">
+                        <input type="password" id="input-email" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password Baru">
                       </div>
                       <button type="submit" class="btn btn-sm btn-primary">Ubah</button>
                     </div>

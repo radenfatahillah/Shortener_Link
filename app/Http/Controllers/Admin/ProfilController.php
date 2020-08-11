@@ -25,6 +25,8 @@ class ProfilController extends Controller
         $user = User::findOrFail($id);
         $user->nama = $request->get('nama');
         $user->email = $request->get('email');
+
+
         if ($request->hasFile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
@@ -32,8 +34,20 @@ class ProfilController extends Controller
             $file->move('assets/images', $filename);
             $user->image = $filename;
         } 
-        $user->updated_at = now();
         $user->save();
+        return redirect()->back();
+
+
+        // ========================================
+        $this->validate($request,[
+            'nama' => 'required',
+            'email' => 'required|email',
+        ]);
+        $user = User::findOrFail(Auth::id());
+        $user->nama =  $request->nama;
+        
+        $user->save();
+        Toastr::success('Tersimpan', 'Perubahan', ["positionClass" => "toast-bottom-right"]);
         return redirect()->back();
     }
 }

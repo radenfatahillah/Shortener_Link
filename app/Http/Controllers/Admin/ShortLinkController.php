@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\ShortLink;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Brian2694\Toastr\Facades\Toastr;
+use App\ShortLink;
 
 class ShortLinkController extends Controller
 {
@@ -17,8 +18,8 @@ class ShortLinkController extends Controller
      */
     public function index()
     {
-        $shortLinks =  Auth::user()->shortlink()->latest()->paginate(5);
-        return view('admin.short_link.index', compact('shortLinks'));
+        $shortlink=ShortLink::where('user_id',Auth::user()->id)->latest()->paginate(5);
+        return view ('admin.kelola_short_link.index', ['shortlink' => $shortlink]);
     }
 
     /**
@@ -39,21 +40,29 @@ class ShortLinkController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'original_link' => 'required|url'
-         ]);
-    
-         $input['original_link'] = $request->original_link;
-         $input['short_link'] = Str::random(3);
-         $input['user_id'] = Auth::id();
-    
-         ShortLink::create($input);
-         return redirect()->back();
+        $messages = [
+            'required' => ':attribute Harus Diisi',
+            'unique' => 'URL Sudah Dilakukan "Short/Dipersingkat" Sebelumnya',
+            'min' => ':attribute Harus Diisi Minimal :min Karakter'
+        ];
+        $this->validate($request, [
+            'short_link',
+            'user_id',
+            'original_link'=> ['required', 'unique:short_links', 'min:3']
+        ], $messages);
+
+        $shortlink = new ShortLink();
+        $shortlink->original_link = $request->original_link;
+        $shortlink->user_id = Auth::id();
+        $shortlink->short_link = Str::random(3);
+        $shortlink->save();
+        Toastr::success('Short URL : "'.  $shortlink->short_link .'" Berhasil Dibuat', 'URL', ["positionClass" => "toast-bottom-right"]);
+        return redirect()->back();
     }
+
     public function shortenLink($short_link)
     {
         $find = ShortLink::where('short_link', $short_link)->first();
-   
         return redirect($find->original_link);
     }
     /**
@@ -75,8 +84,8 @@ class ShortLinkController extends Controller
      */
     public function edit($id)
     {
-        $short_links = ShortLink::find($id);
-        return view('admin.list_short_link.edit', compact('short_links'));
+        $shortlink = ShortLink::find($id);
+        return view ('admin.kelola_short_link.edit', compact('shortlink'));
     }
 
     /**
@@ -88,9 +97,26 @@ class ShortLinkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $messages = [
+            'required' => ':attribute Harus Diisi',
+            // 'min' => ':attribute Harus Diisi Minimal :min Karakter',
+            'unique' => 'URL Sudah Dilakukan "Short/Dipersingkat" Sebelumnya',
+            'max' => ':attribute Harus Diisi Maksimal :max Karakter'
+        ];
+        $this->validate($request, [
+            'original_link',
+            'user_id',
+            'short_link'=> ['required', 'unique:short_links', 'max:20']
+        ], $messages);
 
+        $shortlink = ShortLink::find($id);
+        $shortlink->original_link = $request->original_link;
+        $shortlink->user_id = Auth::id();
+        $shortlink->short_link = $request->short_link;
+        $shortlink->save();
+        Toastr::success('Data URL Berhasil Edit', 'URL', ["positionClass" => "toast-bottom-right"]);
+        return redirect()->route('admin.kelola_link.index');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -99,6 +125,9 @@ class ShortLinkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $shortlink = ShortLink::find($id);
+        $shortlink->delete();
+        Toastr::success('Data URL Berhasil Dihapus', 'URL', ["positionClass" => "toast-bottom-right"]);
+        return redirect()->back();
     }
 }

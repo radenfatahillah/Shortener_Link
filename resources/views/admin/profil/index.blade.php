@@ -79,15 +79,10 @@
                                 <img id="preview" src="{{ asset('assets/images/' . Auth::user()->image) }}" class="profile-userpic border"/><br/>
                             </a>
                             <input type="file" name="image" id="image" style="display: none;"/><br>
-                            @if($errors->has('image'))
-                            <div class="text-danger">
-                                {{ $errors->first('image') }}
-                            </div>
-                            @endif
                       </div>
                       <div class="form-group">
-                        <label class="form-control-label" for="nama">Nama Lengkap</label>
-                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama Lengkap" value="{{ Auth::user()->nama }}">
+                        <label class="form-control-label" for="nama">Nama</label>
+                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama" value="{{ Auth::user()->nama }}" required autocomplete="nama" autofocus>
                       </div>
                     </div>
                     <div class="col-lg-12">
@@ -134,5 +129,14 @@
         }
     }
 </script>
-
+<script>
+  $(document).ready(function(){  
+      $("#nama").keypress(function(e){
+      var keyCode = e.which; 
+      if ( !( (keyCode >= 48 && keyCode <= 57) ||(keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) ) && keyCode != 8 && keyCode != 32) {
+        e.preventDefault();
+      }
+    });
+  });
+</script>
 @endpush

@@ -22,21 +22,22 @@
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link {{ Request::is('admin/kelola_shortenerlink*') ? 'active' : '' }}" href="{{route('admin.shortenerlinkindex')}}">
-                <i class="ni ni-pin-3 text-primary"></i>
-                <span class="nav-link-text">Kelola URL Shortener</span>
-              </a>
-            </li>
+            
             <li class="nav-item">
               <a class="nav-link {{ Request::is('admin/kelolamember*') ? 'active' : '' }}" href="{{route('admin.kelolamemberindex')}}">
-                <i class="ni ni-planet text-orange"></i>
+                <i class="fas fa-users text-orange"></i>
                 <span class="nav-link-text">Kelola Member</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ Request::is('admin/kelolashortenerlinkmember*') ? 'active' : '' }}" href="{{route('admin.shortenerlinkindexmember')}}">
-                <i class="ni ni-pin-3 text-primary"></i>
+              <a class="nav-link {{ Request::is('admin/kelola_link*') ? 'active' : '' }}" href="{{route('admin.kelola_link.index')}}">
+                <i class="fas fa-link text-info"></i>
+                <span class="nav-link-text">Kelola URL Shortener</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ Request::is('admin/short_link_all*') ? 'active' : '' }}" href="{{ route('admin.short_link_all.index') }}">
+                <i class="fas fa-link text-primary"></i>
                 <span class="nav-link-text">Kelola URL Shortener <small>Member-Public</small></span>
               </a>
             </li>

@@ -25,7 +25,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Nama" type="text" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus>
+                      <input class="form-control" placeholder="Nama" type="text" id="nama" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus>
                     </div>
                   </div>
                   <div class="form-group">
@@ -68,5 +68,14 @@
 @endsection
 
 @push('js')
-
+<script>
+  $(document).ready(function(){  
+      $("#nama").keypress(function(e){
+      var keyCode = e.which; 
+      if ( !( (keyCode >= 48 && keyCode <= 57) ||(keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) ) && keyCode != 8 && keyCode != 32) {
+        e.preventDefault();
+      }
+    });
+  });
+</script>
 @endpush

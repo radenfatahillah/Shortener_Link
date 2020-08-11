@@ -18,25 +18,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/', 'ShortLinkController@short')->name('short');
-Route::get('/dk/{link}', 'ShortLinkController@shortLink')->name('shortLink');
+Route::get('/DK/{link}', 'ShortLinkController@shortLink')->name('shortLink');
 
 Auth::routes();
 
 Route::group(['as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth','admin']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::resource('adminedit', 'ProfilController', ['only' => ['index','create','destroy','store','update']]);
-    Route::get('kelola_shortenerlink', 'ShortenerLinkController@index')->name('shortenerlinkindex');
-    Route::delete('kelola_shortenerlink/delete/{id}', 'ShortenerLinkController@destroy')->name('shortenerlinkdelete');
-    Route::get('kelolashortenerlinkmember', 'ShortenerLinkMemberController@index')->name('shortenerlinkindexmember');
-    Route::delete('kelolashortenerlinkmember/delete/{id}', 'ShortenerLinkMemberController@destroy')->name('shortenerlinkdeletemember');
     Route::get('ubahpassword', 'UbahPasswordController@index')->name('ubahpasswordindex');
     Route::get('kelolamember', 'KelolaMemberController@index')->name('kelolamemberindex');
     Route::delete('kelolamember/delete/{id}', 'KelolaMemberController@destroy')->name('kelolamemberdelete');
     Route::put('/password', 'UbahPasswordController@updatePassword')->name('passwordupdate');
-    //
-    Route::resource('short', 'ShortLinkController');
+    
+    Route::resource('short_link_all', 'SemuaShortLinkController', ['only' => ['index', 'destroy']]);
+    Route::resource('kelola_member', 'KelolaMemberController', ['only' => ['index', 'destroy']]);
+    Route::resource('kelola_link', 'ShortLinkController', ['except' => ['show']]);
     Route::get('{short_link}', 'ShortLinkController@shortenLink')->name('shorten.link');
     
+
+       
 });
 
 Route::group(['as'=>'member.','prefix'=>'member', 'namespace'=>'Member', 'middleware'=>['auth','member']], function () {
