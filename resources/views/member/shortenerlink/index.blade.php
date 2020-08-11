@@ -30,8 +30,8 @@
                 </tr>
               </thead>
               <tbody class="list text-center">
+              @foreach($shortlink as $sl)
                 <tr>
-                @foreach($shortlink as $sl)
                 <td>
                     <span class="badge badge-dot mr-4">
                       <span class="status"><?= date("d M Y", strtotime($sl->created_at)) ?></span>
@@ -59,8 +59,8 @@
                     <button type="submit" class="btn btn-sm btn-danger icon icon-shape icon-sm bg-gradient-red text-white rounded-circle shadow"><i class="fas fa-trash"></i></button>
                   </form>
                   </td>
-                  @endforeach 
                 </tr>
+                @endforeach 
               </tbody>
             </table>
           </div>

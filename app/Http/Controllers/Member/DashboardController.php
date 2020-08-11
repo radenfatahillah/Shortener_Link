@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
+use App\ShortLink;
+use Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $shortlink=User::where('role_id', '2')->paginate(3);
+        $shortlink=ShortLink::where('user_id',Auth::user()->id)->paginate(3);
         return view('member.dashboard',compact('shortlink'));
     }
 }

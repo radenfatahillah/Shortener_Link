@@ -20,7 +20,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Member</h5>
-                  <span class="h2 font-weight-bold mb-0">{{ $member->total() }}</span>
+                  <span class="h2 font-weight-bold mb-0">{{ $member->count() }}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -39,7 +39,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">URL PUBLIC</h5>
-                  <span class="h2 font-weight-bold mb-0">{{ $url_public->total() }}</span>
+                  <span class="h2 font-weight-bold mb-0">{{ $url_public->count() }}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -58,7 +58,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">URL MEMBER</h5>
-                  <span class="h2 font-weight-bold mb-0">{{ $url_member->total() }}</span>
+                  <span class="h2 font-weight-bold mb-0">{{ $url_member->count() }}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -77,7 +77,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">URL ADMIN</h5>
-                  <span class="h2 font-weight-bold mb-0">{{ $url_admin->total() }}</span>
+                  <span class="h2 font-weight-bold mb-0">{{ $url_admin->count() }}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">

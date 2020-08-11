@@ -11,7 +11,7 @@ class ShortenerLinkController extends Controller
 {
     public function index()
     {
-        $shortlink=ShortLink::where('user_id',Auth::user()->id)->get();
+        $shortlink=ShortLink::where('user_id',Auth::user()->id)->latest()->get();
         return view ('member.shortenerlink.index',['shortlink'=>$shortlink]);
     }
 
