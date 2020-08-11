@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Dashboard')
+@section('title','Ubah Password')
 
 @push('css')
 <style>
@@ -32,7 +32,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="{{ asset('assets/images/' . Auth::user()->image) }}" class="rounded-circle picca">
+                    <img src="{{ asset('assets/images/' .Auth::user()->image) }}" class="rounded-circle picca">
                   </a>
                 </div>
               </div>
@@ -64,7 +64,7 @@
                 </div>
               </div>
             </div>
-            <form action="{{route('admin.passwordupdate')}}" method="POST">
+            <form action="{{ route('admin.ubahpassword.update', Auth::user()->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="card-body">
@@ -81,13 +81,13 @@
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Password Baru</label>
-                        <input type="password" name="password" name="password_confirmation" id="input-email" class="form-control" placeholder="Password Baru">
+                        <input type="password" name="password" name="password" id="input-email" class="form-control" placeholder="Password Baru">
                       </div>
                     </div>
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Konfirmasi Password Baru</label>
-                        <input type="password" id="input-email" class="form-control" placeholder="Konfirmasi Password Baru">
+                        <input type="password" id="input-email" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password Baru">
                       </div>
                       <button type="submit" class="btn btn-sm btn-primary">Ubah</button>
                     </div>

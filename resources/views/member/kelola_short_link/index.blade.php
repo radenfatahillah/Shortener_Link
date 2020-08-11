@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Kelola Member')
+@section('title','List URL Shortener')
 
 @push('css')
 
@@ -14,50 +14,54 @@
         <div class="card">
           <!-- Card header -->
           <div class="card-header border-0">
-            <h3 class="mb-0">List Member</h3>
+          <h3 class="mb-0">List URL Shortener<span class="badge badge-pill badge-default"> {{ $shortlink->count() }}</span>
+            </h3>
+            
           </div>
-          <!-- List Shortener Link -->
+          <!-- List URL Shortener -->
           <div class="table-responsive">
             <table class="table align-items-center table-flush">
               <thead class="thead-light text-center">
                 <tr>
-                  <th scope="col" class="sort" data-sort="name">No</th>
-                  <th scope="col" class="sort" data-sort="name">Nama</th>
-                  <th scope="col" class="sort" data-sort="budget">Email</th>
-                  <th scope="col" class="sort" data-sort="status">Bergabung</th>
-                  <th scope="col" class="sort" data-sort="completion">Link Dibuat</th>
+                  <th scope="col" class="sort" data-sort="budget">No</th>
+                  <th scope="col" class="sort" data-sort="budget">Original Link</th>
+                  <th scope="col" class="sort" data-sort="status">Shortlink</th>
+                  <th scope="col" class="sort" data-sort="name">Tanggal Dibuat</th>
+                  <th scope="col" class="sort" data-sort="completion">Tanggal Diubah</th>
                   <th scope="col" class="sort" data-sort="completion">Aksi</th>
-                  <th scope="col"></th>
                 </tr>
               </thead>
-              <tbody class="list text-center">
-                @foreach($members as $key=> $row)
+              <tbody class="list">
+              @foreach($shortlink as $key=> $row)
                 <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>
-                    <div class="media align-items-center">
-                        <a href="#" class="avatar rounded-circle mr-3">
-                          <img alt="Image placeholder" src="{{ asset('assets/images/' .$row->image) }}" class="profile-userpic">
-                        </a>
-                        <div class="media-body">
-                          <span class="name mb-0 text-sm">{{ $row->nama }}</span>
-                        </div>
-                      </div>
-                      
+                  <td>{{ $key + 1 }}</td>
+                  <td>
+                    <span class="badge badge-dot mr-4">
+                      <span class="status">{!!str_limit($row->original_link,'30')!!}
+                      </span>
+                    </span>
                   </td>
                   <td>
-                  {{ $row->email }}
+                    <span class="badge badge-dot mr-4">
+                      <span class="status">{{ route('member.shorten.link', $row->short_link) }}</span>
+                    </span>
                   </td>
                   <td>
-                    {{ date("d M Y", strtotime($row->created_at)) }}
+                    <span class="badge badge-dot mr-4">
+                      <span class="status">{{ date("d M Y", strtotime($row->created_at)) }}</span>
+                    </span>
                   </td>
                   <td>
-                    {{ $row->shortlink->count() }}
+                    <span class="badge badge-dot mr-4">
+                      <span class="status">{{ date("d M Y", strtotime($row->updated_at)) }}</span>
+                    </span>
                   </td>
-                 
                   <td>
+                    <a href="{{ route('member.kelola_link.edit', ['kelola_link' => $row]) }}" class="btn btn-sm btn-success icon icon-shape icon-sm bg-gradient-green text-white rounded-circle shadow">
+                      <i class="fas fa-edit"></i>
+                    </a>
                   <button type="submit" class="btn btn-sm btn-danger icon icon-shape icon-sm bg-gradient-red text-white rounded-circle shadow" type="button" onclick="hapus({{ $row->id }})"><i class="fas fa-trash"></i></button>
-                  <form id="hps-{{ $row->id }}" action="{{ route('admin.kelola_member.destroy', ['kelola_member' => $row]) }}" method="POST" style="display: none;" >
+                  <form id="hps-{{ $row->id }}" action="{{ route('member.kelola_link.destroy', ['kelola_link' => $row]) }}" method="POST" style="display: none;" >
                       @csrf
                       @method('DELETE')
                   </form>
@@ -71,11 +75,10 @@
           <div class="card-footer py-4">
             <nav aria-label="...">
               <ul class="pagination justify-content-end mb-0">
-                {{ $members->links() }}
+                {{ $shortlink->links() }}
               </ul>
             </nav>
           </div>
-
         </div>
       </div>
     </div>
@@ -111,4 +114,5 @@
         })
     }
 </script>
+
 @endpush

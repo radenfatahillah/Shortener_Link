@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Dashboard')
+@section('title','Ubah Password')
 
 @push('css')
 <style>
@@ -32,7 +32,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="{{ asset('assets/images/' . Auth::user()->image) }}" class="rounded-circle picca">
+                    <img src="{{ asset('assets/images/' .Auth::user()->image) }}" class="rounded-circle picca">
                   </a>
                 </div>
               </div>
@@ -64,11 +64,10 @@
                 </div>
               </div>
             </div>
-            <form action="{{route('member.passwordupdate')}}" method="POST">
-            @csrf
-            @method('PUT')
+            <form action="{{ route('member.ubahpassword.update', Auth::user()->id) }}" method="POST">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <input type="hidden" name="_method" value="PATCH">
             <div class="card-body">
-              <form>
                 <h6 class="heading-small text-muted mb-4">Ubah Password</h6>
                 <div class="pl-lg-4">
                   <div class="row">
@@ -93,7 +92,6 @@
                     </div>
                   </div>
                 </div>
-              </form>
             </div>
             </form>
           </div>

@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Brian2694\Toastr\Facades\Toastr;
-use App\User;
+use App\ShortLink;
 
-class KelolaMemberController extends Controller
+class SemuaShortLinkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class KelolaMemberController extends Controller
      */
     public function index()
     {
-        $members = User::where('role_id','2')->latest()->paginate(5);
-        return view ('admin.kelola_member.index', compact('members'));
+        $shortlink = ShortLink::where('user_id','!=', 1)->latest()->paginate(5);
+        return view ('admin.semua_short_link.index', compact('shortlink'));
     }
 
     /**
@@ -83,9 +82,8 @@ class KelolaMemberController extends Controller
      */
     public function destroy($id)
     {
-        $member = User::find($id);
-        $member->delete();
-        Toastr::success('Member Berhasil Dihapus', 'MEMBER', ["positionClass" => "toast-bottom-right"]);
+        $shortlink = ShortLink::find($id);
+        $shortlink->delete();
         return redirect()->back();
     }
 }

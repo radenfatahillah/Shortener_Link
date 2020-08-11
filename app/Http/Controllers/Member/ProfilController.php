@@ -34,6 +34,6 @@ class ProfilController extends Controller
         } 
         $user->updated_at = now();
         $user->save();
-        return redirect('member/memberedit');
+        return redirect()->back();
     }
 }

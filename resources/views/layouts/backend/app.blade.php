@@ -19,6 +19,7 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/argon.css?v=1.2.0') }}" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   
   @stack('css')
 </head>
@@ -160,6 +161,20 @@
   <script src="{{ asset('assets/vendor/chart.js/dist/Chart.extension.js') }}"></script>
   <!-- Argon JS -->
   <script src="{{ asset('assets/js/argon.js?v=1.2.0') }}"></script>
+  <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
+<script>
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+              toastr.error('{{ $error }}','Error',{
+                  closeButton:true,
+                  progressBar:true,
+                  positionClass: "toast-bottom-right",
+               });
+        @endforeach
+    @endif
+</script>
   @stack('js')
 </body>
 

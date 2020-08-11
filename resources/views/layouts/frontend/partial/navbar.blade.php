@@ -82,13 +82,13 @@
                 @else
                 @if (Auth::check() && Auth::user()->role->id == 1)
                   <li class="nav-item d-none d-lg-block ml-lg-4">
-                      <a href="{{ route('admin.dashboard') }}" class="btn btn-neutral">
+                      <a href="{{ route('admin.dashboard.index') }}" class="btn btn-neutral">
                         <span class="nav-link-inner--text">Dashboard</span>
                       </a>
                   </li>
                   @else
                   <li class="nav-item d-none d-lg-block ml-lg-4">
-                      <a href="{{ route('member.dashboard') }}" class="btn btn-neutral">
+                      <a href="{{ route('member.dashboard.index') }}" class="btn btn-neutral">
                         <span class="nav-link-inner--text">Dashboard</span>
                       </a>
                   </li>

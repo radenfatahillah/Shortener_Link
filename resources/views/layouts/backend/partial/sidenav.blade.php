@@ -16,63 +16,64 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
           @if (Auth::check() && Auth::user()->role->id == 1)
-            <li class="nav-item">
-              <a class="nav-link active" href="{{route('admin.dashboard')}}">
+          <li class="nav-item">
+              <a class="nav-link {{ Request::is('admin/dashboard*') ? 'active' : '' }}" href="{{route('admin.dashboard')}}">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
+            
             <li class="nav-item">
-              <a class="nav-link" href="{{route('admin.shortenerlinkindex')}}">
-                <i class="ni ni-pin-3 text-primary"></i>
-                <span class="nav-link-text">Kelola URL Shortener</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('admin.kelolamemberindex')}}">
-                <i class="ni ni-planet text-orange"></i>
+              <a class="nav-link {{ Request::is('admin/kelolamember*') ? 'active' : '' }}" href="{{route('admin.kelola_member.index')}}">
+                <i class="fas fa-users text-orange"></i>
                 <span class="nav-link-text">Kelola Member</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{route('admin.shortenerlinkindexmember')}}">
-                <i class="ni ni-pin-3 text-primary"></i>
-                <span class="nav-link-text">Kelola URL Shortener Member</span>
+              <a class="nav-link {{ Request::is('admin/kelola_link*') ? 'active' : '' }}" href="{{route('admin.kelola_link.index')}}">
+                <i class="fas fa-link text-info"></i>
+                <span class="nav-link-text">Kelola URL Shortener</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./adminedit">
+              <a class="nav-link {{ Request::is('admin/short_link_all*') ? 'active' : '' }}" href="{{ route('admin.short_link_all.index') }}">
+                <i class="fas fa-link text-primary"></i>
+                <span class="nav-link-text">Kelola URL Shortener <small>Member-Public</small></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ Request::is('admin/adminedit*') ? 'active' : '' }}" href="{{route('admin.adminedit.index')}}">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">Profil</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{route('admin.ubahpasswordindex')}}">
+              <a class="nav-link {{ Request::is('admin/ubahpassword*') ? 'active' : '' }}" href="{{route('admin.ubahpassword.index')}}">
                 <i class="ni ni-settings-gear-65 text-default"></i>
                 <span class="nav-link-text">Ubah Password</span>
               </a>
             </li>
             @else
-            <li class="nav-item {{ (request()->routeIs('member.dashboard*')) ? 'active' : '' }}">
-              <a class="nav-link" href="{{route('member.dashboard')}}">
+            <li class="nav-item">
+              <a class="nav-link {{ Request::is('member/dashboard*') ? 'active' : '' }}" href="{{route('member.dashboard')}}">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
-            <li class="nav-item {{ (request()->routeIs('member.shortenerlinkindex*')) ? 'active' : '' }}">
-              <a class="nav-link" href="{{route('member.shortenerlinkindex')}}">
+            <li class="nav-item">
+              <a class="nav-link {{ Request::is('member/kelola_link*') ? 'active' : '' }}" href="{{route('member.kelola_link.index')}}">
                 <i class="ni ni-pin-3 text-primary"></i>
                 <span class="nav-link-text">Kelola URL Shortener</span>
               </a>
             </li>
-            <li class="nav-item {{ Request::is('member.profilindex*') ? 'active' : '' }}">
-              <a class="nav-link" href="./memberedit">
+            <li class="nav-item">
+              <a class="nav-link {{ Request::is('member/memberedit*') ? 'active' : '' }}" href="{{route('member.memberedit.index')}}">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">Profil</span>
               </a>
             </li>
-            <li class="nav-item {{ Request::is('member.ubahpasswordindex*') ? 'active' : '' }}">
-              <a class="nav-link" href="{{route('member.ubahpasswordindex')}}">
+            <li class="nav-item">
+              <a class="nav-link {{ Request::is('member/ubahpassword*') ? 'active' : '' }}" href="{{route('member.ubahpassword.index')}}">
                 <i class="ni ni-settings-gear-65 text-default"></i>
                 <span class="nav-link-text">Ubah Password</span>
               </a>

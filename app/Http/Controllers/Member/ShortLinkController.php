@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class ShortLinkController extends Controller
     public function index()
     {
         $shortlink=ShortLink::where('user_id',Auth::user()->id)->latest()->paginate(5);
-        return view ('admin.kelola_short_link.index', ['shortlink' => $shortlink]);
+        return view ('member.kelola_short_link.index', ['shortlink' => $shortlink]);
     }
 
     /**
@@ -56,7 +56,7 @@ class ShortLinkController extends Controller
         $shortlink->user_id = Auth::id();
         $shortlink->short_link = Str::random(3);
         $shortlink->save();
-        Toastr::success('Short URL : "'.  $shortlink->short_link .'" Berhasil Dibuat', 'URL', ["positionClass" => "toast-bottom-right"]);
+        Toastr::success('Short URL berhasil dibuat! :)', 'URL', ["positionClass" => "toast-bottom-right"]);
         return redirect()->back();
     }
 
@@ -85,7 +85,7 @@ class ShortLinkController extends Controller
     public function edit($id)
     {
         $shortlink = ShortLink::find($id);
-        return view ('admin.kelola_short_link.edit', compact('shortlink'));
+        return view ('member.kelola_short_link.edit', compact('shortlink'));
     }
 
     /**
@@ -114,7 +114,7 @@ class ShortLinkController extends Controller
         $shortlink->short_link = $request->short_link;
         $shortlink->save();
         Toastr::success('Data URL Berhasil Edit', 'URL', ["positionClass" => "toast-bottom-right"]);
-        return redirect()->route('admin.kelola_link.index');
+        return redirect()->route('member.kelola_link.index');
     }
     /**
      * Remove the specified resource from storage.

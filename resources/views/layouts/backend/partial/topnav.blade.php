@@ -32,20 +32,20 @@
                 <h6 class="text-overflow m-0">Selamat Datang!</h6>
               </div>
               @if (Auth::check() && Auth::user()->role->id == 1)
-              <a href="./adminedit" class="dropdown-item">
+              <a href="{{route('admin.adminedit.index')}}" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>Profil</span>
               </a>
-              <a href="{{route('admin.ubahpasswordindex')}}" class="dropdown-item">
+              <a href="{{route('admin.ubahpassword.index')}}" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Ubah Password</span>
               </a>
               @else
-              <a href="./memberedit" class="dropdown-item">
+              <a href="{{route('member.memberedit.index')}}" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>Profil</span>
               </a>
-              <a href="{{route('member.ubahpasswordindex')}}" class="dropdown-item">
+              <a href="{{route('member.ubahpassword.index')}}" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Ubah Password</span>
               </a>
