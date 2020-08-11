@@ -30,7 +30,6 @@ Route::group(['as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middlewa
     Route::resource('kelola_member', 'KelolaMemberController', ['only' => ['index', 'destroy']]);
     Route::resource('kelola_link', 'ShortLinkController', ['except' => ['show']]);
     Route::get('{short_link}', 'ShortLinkController@shortenLink')->name('shorten.link');
-    
 });
 
 Route::group(['as'=>'member.','prefix'=>'member', 'namespace'=>'Member', 'middleware'=>['auth','member']], function () {
