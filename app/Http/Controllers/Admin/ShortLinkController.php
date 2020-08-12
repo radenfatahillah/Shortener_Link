@@ -48,7 +48,7 @@ class ShortLinkController extends Controller
         $this->validate($request, [
             'short_link',
             'user_id',
-            'original_link'=> ['required', 'unique:short_links', 'min:3']
+            'original_link'=> ['required', 'min:3']
         ], $messages);
 
         $shortlink = new ShortLink();
@@ -105,7 +105,7 @@ class ShortLinkController extends Controller
         $this->validate($request, [
             'original_link',
             'user_id',
-            'short_link'=> ['required', 'unique:short_links', 'max:20']
+            'short_link'=> ['required', 'max:20']
         ], $messages);
 
         $shortlink = ShortLink::find($id);

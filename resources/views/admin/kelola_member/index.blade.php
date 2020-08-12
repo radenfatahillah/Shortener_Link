@@ -27,7 +27,6 @@
                   <th scope="col" class="sort" data-sort="status">Bergabung</th>
                   <th scope="col" class="sort" data-sort="completion">Link Dibuat</th>
                   <th scope="col" class="sort" data-sort="completion">Aksi</th>
-                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody class="list text-center">

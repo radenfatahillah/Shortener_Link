@@ -28,7 +28,6 @@
                 <th scope="col" class="sort" data-sort="name">Tanggal Dibuat</th>
                 <th scope="col" class="sort" data-sort="completion">Tanggal Diubah</th>
                 <th scope="col" class="sort" data-sort="completion">Aksi</th>
-                <th scope="col"></th>
               </tr>
             </thead>
             <tbody class="list">
