@@ -31,7 +31,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                           <label class="form-control-label">URL ORIGINAL</label>
-                          <input type="url" class="form-control" name="original_link" value="{!!str_limit($shortlink->original_link,'80')!!}" readonly>
+                          <input type="url" class="form-control" name="original_link" value="{{ $shortlink->original_link }}" readonly>
                         </div>
                       </div>
                   <div class="col-lg-12">
