@@ -12,7 +12,7 @@
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
-      <div class="row ">
+      <div class="row col-lg-12 col-md-7">
         <div class="col-xl-3 col-md-6 mt-5">
           <div class="card card-stats">
             <!-- Card body -->
