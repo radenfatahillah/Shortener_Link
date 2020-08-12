@@ -10,6 +10,11 @@ use App\ShortLink;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $member = User::where('role_id', '2')->get();

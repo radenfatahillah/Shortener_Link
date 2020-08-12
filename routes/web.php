@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::post('/', 'ShortLinkController@short')->name('short');
-Route::get('/DK/{link}', 'ShortLinkController@shortLink')->name('shortLink');
 
 Auth::routes();
 
+Route::get('/', 'HomeController@index')->name('home');
+Route::post('/', 'ShortLinkController@short')->name('short');
+Route::get('/DK/{link}', 'ShortLinkController@shortLink')->name('shortLink');
 
 
 Route::group(['as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth','admin']], function () {
@@ -34,7 +34,6 @@ Route::group(['as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middlewa
     Route::get('{short_link}', 'ShortLinkController@shortenLink')->name('shorten.link');
 
 });
-
 Route::group(['as'=>'member.','prefix'=>'member', 'namespace'=>'Member', 'middleware'=>['auth','member']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::resource('memberedit', 'ProfilController', ['only' => ['index','create','destroy','store','update']]);
