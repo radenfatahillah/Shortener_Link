@@ -60,7 +60,7 @@
             <div class="card-body px-lg-5 py-lg-5">
               <small class="text-muted">Dibuat : {{ $row->created_at->diffForHumans() }}</small>
               <div class="input-group mb-3">                      
-                <input class="form-control" type="url" value="{{ route('member.shorten.link', $row->short_link) }}" id="pilih" readonly> 
+                <input class="form-control" type="url" value="{{ url($row->short_link) }}" id="pilih" readonly> 
                 <div class="input-group-append">
                   <a href="{{ route('member.kelola_link.edit', $row ['id']) }}" type="button" class="btn btn-primary">Edit</a>
                   <button type="button" onclick="copy_text()" class="btn btn-primary" >Salin</button>

@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Auth::routes();
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/', 'ShortLinkController@short')->name('short');
-Route::get('/dk/{link}', 'ShortLinkController@shortLink')->name('shortLink');
-
-Auth::routes();
+Route::get('/{link}', 'ShortLinkController@shortLink')->name('shortLink');
 
 Route::group(['as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth','admin']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');

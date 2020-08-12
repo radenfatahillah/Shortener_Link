@@ -37,7 +37,7 @@
                   <div class="col-lg-12">
                     <div class="form-group">
                       <label class="form-control-label">SHORT</label>
-                      <input type="url" class="form-control" value="{{ route('admin.shorten.link', $shortlink->short_link) }}" readonly>
+                      <input type="url" class="form-control" value="{{ url($shortlink->short_link) }}" readonly>
                     </div>
                   </div>
                   <div class="col-lg-6">

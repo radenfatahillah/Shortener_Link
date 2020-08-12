@@ -44,7 +44,7 @@
                   </td>
                   <td>
                     <span class="badge badge-dot mr-4">
-                      <span class="status"><?= url('/dk/'. $sl->short_link) ?></span>
+                      <span class="status"><?= url($sl->short_link) ?></span>
                     </span>
                   </td>
                   <td>

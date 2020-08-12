@@ -21,7 +21,7 @@
                 <label for="pilih" class="form-control-label">Sebelumnya : <small>{{ $original_link->original_link}}</small></label>
                 <hr>
                   <div class="input-group mb-3">                      
-                    <input class="form-control" type="url" value="{{ url('/DK/'. $original_link->short_link) }}" id="pilih" readonly> 
+                    <input class="form-control" type="url" value="{{ url($original_link->short_link) }}" id="pilih" readonly> 
                     <div class="input-group-append">
                       <button type="button" onclick="copy_text()" class="btn btn-primary" >Salin</button>
                     </div>
