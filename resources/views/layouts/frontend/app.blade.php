@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Shortener Link adalah tools gratis yang dikembangkan oleh Diskominfo Prov. Kalbar  untuk mempersingkat URL atau mengurangi tautan">
+  <meta name="description" content="Shortener Link adalah tools gratis yang dikembangkan oleh Diskominfo Prov. Kalbar  untuk mempersingkat URL atau memperpendek tautan">
   <meta name="author" content="Diskominfo Prov.Kalbar">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'Shortener_Link') }} - @yield ('title') </title>
+  <title>{{ config('app.name', 'Shortener Link') }} - @yield ('title') </title>
   <!-- Favicon -->
   <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/png">
   <!-- Fonts -->

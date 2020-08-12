@@ -23,6 +23,5 @@ class MemberMiddleware
         } else {
             return redirect()->route('login');
         }
-        
     }
 }
