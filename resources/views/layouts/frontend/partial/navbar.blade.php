@@ -22,23 +22,6 @@
             </div>
           </div>
         </div>
-        {{-- <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a href="dashboard.html" class="nav-link">
-              <span class="nav-link-inner--text">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="login.html" class="nav-link">
-              <span class="nav-link-inner--text">Login</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="register.html" class="nav-link">
-              <span class="nav-link-inner--text">Register</span>
-            </a>
-          </li>
-        </ul> --}}
         <hr class="d-lg-none" />
         <ul class="navbar-nav align-items-lg-center ml-lg-auto">
           <li class="nav-item">
@@ -65,41 +48,35 @@
               <span class="nav-link-inner--text d-lg-none">Twitter</span>
             </a>
           </li>
+
           @guest
-                <li class="nav-item d-none d-lg-block ml-lg-4">
-                  <a href="{{ route('login') }}" class="btn btn-neutral">
-                    <span class="nav-link-inner--text">Login</span>
-                  </a>
-                </li>
-                    @if (Route::has('register'))
-                    <li class="nav-item">
-                      <a href="{{ route('register') }}" class="nav-link">
-                        <span class="nav-link-inner--text">Daftar</span>
-                      </a>
-                    </li>
-                    @endif
-                @else
-                @if (Auth::check() && Auth::user()->role->id == 1)
-                  <li class="nav-item d-none d-lg-block ml-lg-4">
-                      <a href="{{ route('admin.dashboard.index') }}" class="btn btn-neutral">
-                        <span class="nav-link-inner--text">Dashboard</span>
-                      </a>
-                  </li>
-                  @else
-                  <li class="nav-item d-none d-lg-block ml-lg-4">
-                      <a href="{{ route('member.dashboard.index') }}" class="btn btn-neutral">
-                        <span class="nav-link-inner--text">Dashboard</span>
-                      </a>
-                  </li>
-                  @endif
-                  <li class="nav-item">
-                  <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();"  class="nav-link logout "> <span class="d-none d-sm-inline">Keluar</span></a>
-                    <form action="{{ route('logout')}}" id="logout-form" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-                @endguest
+          <li class="nav-item d-none d-lg-block ml-lg-4">
+            <a href="{{ route('login') }}" class="btn btn-neutral">
+              <span class="nav-link-inner--text">Login</span>
+            </a>
+          </li>
+
+          @if(Route::has('register'))
+          <li class="nav-item">
+            <a href="{{ route('register') }}" class="nav-link">
+              <span class="nav-link-inner--text">Daftar</span>
+            </a>
+          </li>
+          @endif
+          @else
+          <li class="nav-item d-none d-lg-block ml-lg-4">
+            <a href="{{ Auth::user()->role->id == 1 ? route('admin.dashboard') : route('member.dashboard')}}" class="btn btn-neutral">
+              <span class="nav-link-inner--text">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('logout') }}" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();"  class="nav-link logout "> <span class="d-none d-sm-inline">Keluar</span></a>
+            <form action="{{ route('logout')}}" id="logout-form" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </li>
+          @endguest
         </ul>
       </div>
     </div>

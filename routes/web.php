@@ -22,6 +22,8 @@ Route::get('/DK/{link}', 'ShortLinkController@shortLink')->name('shortLink');
 
 Auth::routes();
 
+
+
 Route::group(['as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth','admin']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::resource('adminedit', 'ProfilController', ['only' => ['index','create','destroy','store','update']]);    
@@ -30,7 +32,7 @@ Route::group(['as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middlewa
     Route::resource('kelola_member', 'KelolaMemberController', ['only' => ['index', 'destroy']]);
     Route::resource('kelola_link', 'ShortLinkController', ['except' => ['show']]);
     Route::get('{short_link}', 'ShortLinkController@shortenLink')->name('shorten.link');
-    
+
 });
 
 Route::group(['as'=>'member.','prefix'=>'member', 'namespace'=>'Member', 'middleware'=>['auth','member']], function () {
