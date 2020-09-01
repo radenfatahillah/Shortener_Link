@@ -25,6 +25,7 @@
                     <div class="input-group-append">
                       <button type="button" onclick="copy_text()" class="btn btn-primary" >Salin</button>
                     </div>
+                    <a href="{{ route('home')}}" class="btn btn-warning">Buat Baru</a>
                   </div>
                 </div>
               </div> 

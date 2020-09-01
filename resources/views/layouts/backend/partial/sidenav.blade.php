@@ -2,11 +2,7 @@
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
-      @if (Auth::check() && Auth::user()->role->id == 1)
-        <a class="navbar-brand" href="{{route('admin.dashboard')}}">
-      @else
-        <a class="navbar-brand" href="{{route('member.dashboard')}}">
-      @endif
+        <a class="navbar-brand" href="{{route('home')}}">
           <img src="{{ asset('assets/img/brand/logo.png') }}" class="navbar-brand-img" alt="...">
         </a>
       </div>

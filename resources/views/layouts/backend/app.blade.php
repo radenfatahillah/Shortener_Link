@@ -8,9 +8,9 @@
   <meta name="author" content="Diskominfo Prov.Kalbar">
    <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>@yield('title') - {{ config('app.name', 'ShortenerLink') }}</title>
+  <title>PemProv Kalbar</title>
   <!-- Favicon -->
-  <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/png">
+  <link rel="icon" href="{{ asset('assets/img/favicon.ico') }}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->

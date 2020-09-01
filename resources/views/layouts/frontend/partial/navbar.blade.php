@@ -11,7 +11,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="dashboard.html">
-                <img src="{{ asset('assets/img/brand/blue.png') }}">
+                <img src="{{ asset('assets/img/brand/logo.png') }}">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -22,7 +22,6 @@
             </div>
           </div>
         </div>
-        <hr class="d-lg-none" />
         <ul class="navbar-nav align-items-lg-center ml-lg-auto">
           <li class="nav-item">
             <a class="nav-link nav-link-icon" href="https://www.facebook.com/kominfo.kalbar" target="_blank" data-toggle="tooltip" data-original-title="Like us on Facebook">
@@ -48,15 +47,13 @@
               <span class="nav-link-inner--text d-lg-none">Twitter</span>
             </a>
           </li>
-
           @guest
-          <li class="nav-item d-none d-lg-block ml-lg-4">
-            <a href="{{ route('login') }}" class="btn btn-neutral">
+          @if(Route::has('register'))
+          <li class="nav-item">
+            <a href="{{ route('login') }}" class="nav-link">
               <span class="nav-link-inner--text">Login</span>
             </a>
           </li>
-
-          @if(Route::has('register'))
           <li class="nav-item">
             <a href="{{ route('register') }}" class="nav-link">
               <span class="nav-link-inner--text">Daftar</span>
@@ -64,14 +61,14 @@
           </li>
           @endif
           @else
-          <li class="nav-item d-none d-lg-block ml-lg-4">
-            <a href="{{ Auth::user()->role->id == 1 ? route('admin.dashboard') : route('member.dashboard')}}" class="btn btn-neutral">
-              <span class="nav-link-inner--text">Dashboard</span>
+          <li class="nav-item">
+            <a href="{{ Auth::user()->role->id == 1 ? route('admin.dashboard') : route('member.dashboard')}}" class="nav-link">
+              <span class="nav-link">Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
           <a href="{{ route('logout') }}" onclick="event.preventDefault();
-              document.getElementById('logout-form').submit();"  class="nav-link logout "> <span class="d-none d-sm-inline">Keluar</span></a>
+              document.getElementById('logout-form').submit();"  class="nav-link logout "> <span class="nav-link">Keluar</span></a>
             <form action="{{ route('logout')}}" id="logout-form" method="POST" style="display: none;">
                 @csrf
             </form>
